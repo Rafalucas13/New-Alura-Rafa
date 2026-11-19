@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confere Aí - Flashcards</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e8eaf6);
+            color: #263238;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #00695c;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        main h2 {
+            margin-bottom: 35px;
+        }
+
+        .area-cartao {
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .cartao {
+            width: 320px;
+            height: 420px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .cartao-interno {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+        }
+
+        .cartao.virado .cartao-interno {
+            transform: rotateY(180deg);
+        }
+
+        .frente, .verso {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 8px 25px #0002;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .verso {
+            transform: rotateY(180deg);
+            background: #e0f2f1;
+        }
+
+        .cartao-imagem {
+            width: 220px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .frente p, .verso p {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .instrucao {
+            margin-top: 25px;
+            color: #546e7a;
+        }
+
+        .botoes {
+            margin-top: 25px;
+        }
+
+        button {
+            background: #00796b;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #004d40;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            background: #00695c;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Confere Aí</h1>
+        <nav>
+            <a href="#">Início</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Descubra a verdade!</h2>
+
+        <div class="area-cartao">
+
+            <div class="cartao" id="cartao" onclick="virarCartao()">
+
+                <div class="cartao-interno">
+
+                    <div class="frente">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJs6-n_KNUGMLLa7DNV7PfzWXJ_wiN6yhlkLQ1t5fc-sI-0uhinL-vszg&s=10"
+                            alt="Sagui-imperador"
+                            class="cartao-imagem"
+                        >
+
+                        <p>Macacos são animais estúpidos!</p>
+                        <small>MITO ou VERDADE?</small>
+                    </div>
+
+                    <div class="verso">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCHU37quf5oco5qDRPPV6y1VdskarembxhC_aofxAQdI8x-2FdGTP7VmQ&s=10"
+                            alt="Macaco"
+                            class="cartao-imagem"
+                        >
+
+                        <p>MITO!</p>
+                        <p>Primatas no geral são extremamente inteligentes e possuem habilidades de aprendizagem, memória e resolução de problemas.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <p class="instrucao">
+            Clique no cartão para descobrir a resposta!
+        </p>
+
+        <div class="botoes">
+            <button onclick="virarCartao()">Virar cartão</button>
+            <button onclick="voltarInicio()">Voltar ao início</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Projeto feito por Rafael Lucas</p>
+        <p>© 2026 - Confere Aí</p>
+    </footer>
+
+    <script>
+        const cartao = document.getElementById("cartao");
+
+        function virarCartao() {
+            cartao.classList.toggle("virado");
+        }
+
+        function voltarInicio() {
+            cartao.classList.remove("virado");
+        }
+    </script>
+
+</body>
+</html>
